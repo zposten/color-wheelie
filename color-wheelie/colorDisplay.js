@@ -1,3 +1,6 @@
+import d3 from 'd3'
+import chroma from 'chroma-js'
+
 import { colorModes } from './colorWheel.js'
 import { markerDistance } from './util.js'
 
@@ -75,8 +78,9 @@ export function createColorDisplay(colorWheel) {
       .selectAll(colorWheel.selector('theme-color'))
       .each(function (d) {
         let colorEl = this
-        let c = tinycolor({ h: d.color.h, s: d.color.s, v: d.color.v })
-        colorEl.style.backgroundColor = c.toHexString()
+
+        // TODO CHECK
+        colorEl.style.backgroundColor = chroma(d.color).hex()
       })
 
     colorWheel.container
@@ -92,8 +96,9 @@ export function createColorDisplay(colorWheel) {
       .selectAll(colorWheel.selector('theme-value'))
       .each(function (d) {
         let valueEl = this
-        let color = tinycolor({ h: d.color.h, s: d.color.s, v: d.color.v })
-        valueEl.value = color.toHexString()
+
+        // TODO CHECK
+        valueEl.value = chroma(d.color).hex()
       })
   })
 }

@@ -1,3 +1,6 @@
+import d3 from 'd3'
+import chroma from 'chroma-js'
+
 import {
   artisticToScientificSmooth,
   scientificToArtisticSmooth,
@@ -12,7 +15,7 @@ import {
 
 export class ColorWheelMarkerDatum {
   constructor(color, name, show) {
-    this.color = tinycolor(color).toHsv()
+    this.color = chroma(color).hsv()
     this.name = name
     this.show = show
   }
@@ -390,27 +393,6 @@ export class ColorWheel {
         break
     }
     this.dispatch.markersUpdated()
-  }
-
-  getColorsAsHEX() {
-    return this._getColorsAs('toHexString')
-  }
-  getColorsAsRGB() {
-    return this._getColorsAs('toRgbString')
-  }
-  getColorsAsHSL() {
-    return this._getColorsAs('toHslString')
-  }
-  getColorsAsHSV() {
-    return this._getColorsAs('toHsvString')
-  }
-  _getColorsAs(toFunk) {
-    return this.getVisibleMarkers()
-      .data()
-      .sort((a, b) => a.color.h - b.color.h)
-      .map(d =>
-        tinycolor({ h: d.color.h, s: d.color.s, v: d.color.v })[toFunk]()
-      )
   }
 
   setMode(mode) {

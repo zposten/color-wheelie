@@ -1,0 +1,27 @@
+@use 'color-wheelie/colorWheel';
+@use 'color-wheelie/colorDisplay';
+
+html {
+  min-height: 100%;
+}
+
+body {
+  background: black;
+  margin: 0 auto;
+}
+
+.color-wheel-mode-toggle {
+  position: absolute;
+  z-index: 2;
+  top: 20px;
+  right: 20px;
+  height: 2em;
+  border: none;
+  background: #000;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 20px;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}

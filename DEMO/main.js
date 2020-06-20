@@ -1,7 +1,15 @@
-import { ColorWheel, colorModes } from './colorWheel.js'
-import { createColorDisplay } from './colorDisplay.js'
+// import {
+//   ColorWheel,
+//   colorModes,
+// } from '../node_modules/color-wheelie/dist/colorWheel.js'
 
-let colorWheel = new ColorWheel()
+// import {createColorDisplay} from '../node_modules/color-wheelie/colorDisplay.js'
+
+import {ColorWheel, colorModes, createColorDisplay} from 'color-wheelie'
+
+let colorWheel = new ColorWheel({
+  colorWheelImage: './wheel.png',
+})
 
 createModeToggle(colorWheel)
 createColorDisplay(colorWheel)
@@ -22,7 +30,7 @@ function createModeToggle(colorWheel) {
       .append('option')
       .text(colorModes[mode])
       .attr('selected', () =>
-        colorModes[mode] == colorWheel.currentMode ? 'selected' : null
+        colorModes[mode] == colorWheel.currentMode ? 'selected' : null,
       )
   }
 }

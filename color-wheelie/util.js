@@ -1,3 +1,5 @@
+import chroma from 'chroma-js'
+
 // These two functions are ripped straight from Kuler source.
 // They convert between scientific hue to the color wheel's "artistic" hue.
 export function artisticToScientificSmooth(hue) {
@@ -51,7 +53,7 @@ function mapRange(value, fromRange, toRange) {
  * with 100% brightness.
  */
 export function hexFromHS(h, s) {
-  return tinycolor({ h: h, s: s, v: 1 }).toHexString()
+  return chroma({ h: h, s: s, v: 1 }).hex()
 }
 
 /**

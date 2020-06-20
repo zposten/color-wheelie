@@ -1,0 +1,19 @@
+{
+  "name": "color-wheel",
+  "version": "0.0.1",
+  "repository": "https://github.com/zposten/kuler-d3.git",
+  "author": "Zach Posten <zach@posten.io>, Benjamin Knight <ben@benknight.me>",
+  "license": "MIT",
+  "private": "true",
+  "workspaces": [
+    "color-wheelie",
+    "DEMO"
+  ],
+  "scripts": {
+    "start": "cd DEMO && yarn start",
+    "build": "cd color-wheelie && yarn build"
+  },
+  "devDependencies": {
+    "unorepo": "^0.1.0"
+  }
+}

@@ -74,14 +74,6 @@ export function stepFn(base) {
   return x => Math.floor(x / base)
 }
 
-export function svgToCartesian(x, y, radius) {
-  return { x: x - radius, y: radius - y }
-}
-
-export function cartesianToSVG(x, y, radius) {
-  return { x: x + radius, y: radius - y }
-}
-
 /**
  * Given an SVG point (x, y), returns the closest point
  * to (x, y) still in the circle.
@@ -111,7 +103,7 @@ export function getSVGPositionFromHS(h, s, radius) {
 
 /** Inverse of `getSVGPositionFromHS` */
 export function getHSFromSVGPosition(x, y, radius) {
-  let p = svgToCartesian(x, y)
+  let p = svgToCartesian(x, y, radius)
   let theta = Math.atan2(p.y, p.x)
 
   let artisticHue = (theta * (180 / Math.PI) + 360) % 360
@@ -119,4 +111,12 @@ export function getHSFromSVGPosition(x, y, radius) {
 
   let s = Math.min(Math.sqrt(p.x * p.x + p.y * p.y) / radius, 1)
   return { h: scientificHue, s: s }
+}
+
+export function svgToCartesian(x, y, radius) {
+  return { x: x - radius, y: radius - y }
+}
+
+export function cartesianToSVG(x, y, radius) {
+  return { x: x + radius, y: radius - y }
 }

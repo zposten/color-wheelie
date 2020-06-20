@@ -36,7 +36,7 @@ export function scientificToArtisticSmooth(hue) {
  * Map a value from one range to the equivalent value in an other range
  * For example, mapRange(5, [0, 10], [0, 100]) =>  50
  */
-export function mapRange(value, fromRange, toRange) {
+function mapRange(value, fromRange, toRange) {
   const [fromLower, fromUpper] = fromRange
   const [toLower, toUpper] = toRange
 

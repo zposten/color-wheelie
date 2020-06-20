@@ -1,6 +1,5 @@
 /*! Kuler D3 by Benjamin Knight */
 
-
 /** Base & Generic */
 
 html {
@@ -12,10 +11,9 @@ body {
   margin: 0 auto;
 }
 
-
 /** Components */
 
-.colorwheel {
+.color-wheel {
   position: relative;
   z-index: 1;
   display: block;
@@ -24,24 +22,22 @@ body {
   margin: 60px auto 0;
 }
 
-.colorwheel-marker {
+.color-wheel-marker {
   &:first-child circle {
     stroke-opacity: 1;
     stroke-width: 5px;
   }
 
   text {
-    text-shadow:
-      1px 1px 1px black,
-      0 0 3px rgba(0, 0, 0, 0.25);
+    text-shadow: 1px 1px 1px black, 0 0 3px rgba(0, 0, 0, 0.25);
 
-    [data-mode=Shades] & {
+    [data-mode='Shades'] & {
       display: none;
     }
   }
 }
 
-.colorwheel-theme {
+.color-wheel-theme {
   display: flex;
   text-align: center;
   max-width: 450px;
@@ -49,9 +45,12 @@ body {
   margin: 10px auto 0;
 }
 
-.colorwheel-theme-swatch {
+.color-wheel-theme-swatch {
   flex: 1;
   padding: 0 0.6% 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 
   input {
     opacity: 0.3;
@@ -62,14 +61,14 @@ body {
   }
 }
 
-.colorwheel-theme-color {
+.color-wheel-theme-color {
   position: relative;
   border-radius: 50%;
   padding-top: 100%;
   box-shadow: 2px 2px 0 black;
 }
 
-.colorwheel-theme-slider {
+.color-wheel-theme-slider {
   position: relative;
   display: block;
   width: 100%;
@@ -92,7 +91,7 @@ body {
   }
 }
 
-.colorwheel-theme-value {
+.color-wheel-theme-value {
   outline: none;
   width: 100%;
   border: none;
@@ -102,7 +101,7 @@ body {
   color: white;
 }
 
-.colorwheel-mode-toggle {
+.color-wheel-mode-toggle {
   position: absolute;
   z-index: 2;
   top: 20px;
@@ -118,7 +117,7 @@ body {
   }
 }
 
-.colorwheel-gradient {
+.color-wheel-gradient {
   z-index: -1;
   opacity: 0.5;
   -webkit-filter: url(#blur);
@@ -131,7 +130,6 @@ body {
   height: 100%;
   transform: translateZ(0);
 }
-
 
 /** Trumps */
 

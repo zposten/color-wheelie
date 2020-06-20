@@ -1,0 +1,28 @@
+import { ColorWheel, colorModes } from './colorWheel.js'
+import { createColorDisplay } from './colorDisplay.js'
+
+let colorWheel = new ColorWheel()
+
+createModeToggle(colorWheel)
+createColorDisplay(colorWheel)
+
+colorWheel.bindData(5)
+
+function createModeToggle(colorWheel) {
+  let modeToggle = colorWheel.container
+    .append('select')
+    .attr('class', colorWheel.cx('mode-toggle'))
+    .on('change', function () {
+      colorWheel.currentMode = this.value
+      colorWheel.setHarmony()
+    })
+
+  for (let mode in colorModes) {
+    modeToggle
+      .append('option')
+      .text(colorModes[mode])
+      .attr('selected', () =>
+        colorModes[mode] == colorWheel.currentMode ? 'selected' : null
+      )
+  }
+}

@@ -1,11 +1,15 @@
 import { ColorWheel, colorModes } from './colorWheel.js'
+import { createColorDisplay } from './colorDisplay.js'
 
 let colorWheel = new ColorWheel()
-bindModeToggle(colorWheel)
+
+createModeToggle(colorWheel)
+createColorDisplay(colorWheel)
+
 colorWheel.bindData(5)
 
-function bindModeToggle(colorWheel) {
-  var modeToggle = colorWheel.container
+function createModeToggle(colorWheel) {
+  let modeToggle = colorWheel.container
     .append('select')
     .attr('class', colorWheel.cx('mode-toggle'))
     .on('change', function () {
@@ -13,7 +17,7 @@ function bindModeToggle(colorWheel) {
       colorWheel.setHarmony()
     })
 
-  for (var mode in colorModes) {
+  for (let mode in colorModes) {
     modeToggle
       .append('option')
       .text(colorModes[mode])

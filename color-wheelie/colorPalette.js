@@ -1,10 +1,10 @@
 import d3 from 'd3'
 import chroma from 'chroma-js'
 
-import { colorModes } from './colorWheel.js'
-import { markerDistance } from './util.js'
+import {colorModes} from './colorWheel.js'
+import {markerDistance} from './util.js'
 
-export function createColorDisplay(colorWheel) {
+export function createColorPalette(colorWheel) {
   let theme = colorWheel.container
     .append('div')
     .attr('class', colorWheel.cx('theme'))

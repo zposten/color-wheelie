@@ -1,11 +1,11 @@
-import {ColorWheel, colorModes, createColorDisplay} from 'color-wheelie'
+import {ColorWheel, colorModes, createColorPalette} from 'color-wheelie'
 
 let colorWheel = new ColorWheel({
   colorWheelImage: './wheel.png',
 })
 
 createModeToggle(colorWheel)
-createColorDisplay(colorWheel)
+createColorPalette(colorWheel)
 
 colorWheel.bindData(5)
 

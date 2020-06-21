@@ -1,2 +1,2 @@
 export * from './colorWheel'
-export * from './colorDisplay'
+export * from './colorPalette'

@@ -12,12 +12,20 @@ module.exports = {
       {
         test: /\.scss$/i,
         use: [
-          // Creates `style` nodes from CommonJS strings
-          'style-loader',
-          // Translates CSS into CommonJS strings
-          'css-loader',
-          // Compiles Sass to CSS
-          'sass-loader',
+          // 3. Creates `style` nodes from CommonJS strings
+          {loader: 'style-loader'},
+          // 2. Translates CSS into CommonJS strings
+          {loader: 'css-loader'},
+          // 1. Compiles Sass to CSS
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass'),
+              sassOptions: {
+                includePaths: ['../node_modules'], // https://github.com/sass/node-sass#includepaths
+              },
+            },
+          },
         ],
       },
     ],

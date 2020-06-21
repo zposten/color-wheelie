@@ -1,12 +1,11 @@
-import {ColorWheel, colorModes, createColorPalette} from 'color-wheelie'
+import {ColorWheel, ColorPalette} from 'color-wheelie'
 
 let colorWheel = new ColorWheel({
   colorWheelImage: './wheel.png',
 })
 
+new ColorPalette(colorWheel)
 createModeToggle(colorWheel)
-createColorPalette(colorWheel)
-
 colorWheel.bindData(5)
 
 function createModeToggle(colorWheel) {
@@ -18,12 +17,10 @@ function createModeToggle(colorWheel) {
       colorWheel.setHarmony()
     })
 
-  for (let mode in colorModes) {
+  for (let mode in ColorWheel.MODES) {
     modeToggle
       .append('option')
-      .text(colorModes[mode])
-      .attr('selected', () =>
-        colorModes[mode] == colorWheel.currentMode ? 'selected' : null,
-      )
+      .text(ColorWheel.MODES[mode])
+      .attr('selected', () => (colorWheel.isInMode(mode) ? 'selected' : null))
   }
 }

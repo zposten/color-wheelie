@@ -1,4 +1,4 @@
-.color-wheel-theme {
+.color-wheel-palette {
   display: flex;
   text-align: center;
   max-width: 450px;
@@ -6,7 +6,7 @@
   margin: 10px auto 0;
 }
 
-.color-wheel-theme-swatch {
+.color-wheel-palette__color {
   flex: 1;
   padding: 0 0.6% 20px;
   width: 50px;
@@ -22,14 +22,14 @@
   }
 }
 
-.color-wheel-theme-color {
+.color-wheel-palette__color__swatch {
   position: relative;
   border-radius: 50%;
   padding-top: 100%;
   box-shadow: 2px 2px 0 black;
 }
 
-.color-wheel-theme-value {
+.color-wheel-palette__color__color-text {
   outline: none;
   width: 100%;
   border: none;
@@ -39,7 +39,7 @@
   color: white;
 }
 
-.color-wheel-theme-slider {
+.color-wheel-palette__color__slider {
   position: relative;
   display: block;
   width: 100%;

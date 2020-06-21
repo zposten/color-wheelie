@@ -14,6 +14,7 @@
     "build": "cd color-wheelie && yarn build"
   },
   "devDependencies": {
+    "lerna": "^3.22.1",
     "unorepo": "^0.1.0"
   }
 }

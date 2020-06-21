@@ -20,9 +20,8 @@
   "scripts": {
     "sass": "sass .:dist",
     "clean": "rm -rf dist && mkdir dist",
-    "prebuild": "yarn clean",
     "build": "rollup --config",
-    "postbuild": "yarn sass"
+    "prod": "yarn clean && yarn build && yarn sass"
   },
   "dependencies": {
     "chroma-js": "^2.1.0",

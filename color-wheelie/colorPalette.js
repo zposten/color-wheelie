@@ -1,45 +1,65 @@
 import d3 from 'd3'
 import chroma from 'chroma-js'
 
-import {colorModes} from './colorWheel.js'
+import {ColorWheel} from './colorWheel.js'
 import {markerDistance} from './util.js'
 
-export function createColorPalette(colorWheel) {
-  let theme = colorWheel.container
-    .append('div')
-    .attr('class', colorWheel.cx('theme'))
+export class ColorPalette {
+  constructor(colorWheel) {
+    this.classNames = {
+      palette: colorWheel.cx('palette'),
+      paletteColor: colorWheel.cx('palette__color'),
+      swatch: colorWheel.cx('palette__color__swatch'),
+      slider: colorWheel.cx('palette__color__slider'),
+      colorText: colorWheel.cx('palette__color__color-text'),
+    }
 
-  colorWheel.dispatch.on('bindData.themeBuild', function (data) {
-    let swatches = theme
-      .selectAll(colorWheel.selector('theme-swatch'))
+    this.init(colorWheel)
+  }
+
+  init(colorWheel) {
+    // Create root palette element
+    let $palette = colorWheel.container
+      .append('div')
+      .attr('class', this.classNames.palette)
+
+    colorWheel.dispatch.on('bindData.themeBuild', data =>
+      this.createDOM(colorWheel, data, $palette),
+    )
+    colorWheel.dispatch.on('markersUpdated.theme', () =>
+      this.handleMarkersUpdated(colorWheel, $palette),
+    )
+  }
+
+  createDOM(colorWheel, data, $palette) {
+    let paletteColors = $palette
+      .selectAll('.' + this.classNames.paletteColor)
       .data(data)
-    let newSwatches = swatches
+    let newPaletteColors = paletteColors
       .enter()
       .append('div')
-      .attr('class', colorWheel.cx('theme-swatch'))
+      .attr('class', this.classNames.paletteColor)
 
-    // Add color
-    newSwatches.append('div').attr('class', colorWheel.cx('theme-color'))
+    // Add color swatches
+    newPaletteColors.append('div').attr('class', this.classNames.swatch)
 
     // Add sliders
-    newSwatches
+    newPaletteColors
       .append('input')
       .attr('type', 'range')
-      .attr('class', colorWheel.cx('theme-slider'))
+      .attr('class', this.classNames.slider)
       .on('input', function (d) {
         let sliderEl = this
         d.color.v = parseInt(sliderEl.value) / 100
         colorWheel.dispatch.markersUpdated()
       })
-      .on('change', function () {
-        colorWheel.dispatch.updateEnd()
-      })
+      .on('change', () => colorWheel.dispatch.updateEnd())
 
-    // Add color codes
-    newSwatches
+    // Add textual color hex codes
+    newPaletteColors
       .append('input')
       .attr('type', 'text')
-      .attr('class', colorWheel.cx('theme-value'))
+      .attr('class', this.classNames.colorText)
       .on('focus', function () {
         let valueEl = this
         // Like jQuery's .one(), attach a listener that only executes once.
@@ -52,16 +72,16 @@ export function createColorPalette(colorWheel) {
         valueEl.select()
       })
 
-    swatches.exit().remove()
-  })
+    paletteColors.exit().remove()
+  }
 
-  colorWheel.dispatch.on('markersUpdated.theme', function () {
-    colorWheel.container
-      .selectAll(colorWheel.selector('theme-swatch'))
+  handleMarkersUpdated(colorWheel, $palette) {
+    $palette
+      .selectAll('.' + this.classNames.paletteColor)
       .each(function (d, i) {
         let swatchEl = this
         switch (colorWheel.currentMode) {
-          case colorModes.TRIAD:
+          case ColorWheel.MODES.TRIAD:
             let order = i % 3
             swatchEl.style.order = order
             swatchEl.style.webkitOrder = order
@@ -74,31 +94,21 @@ export function createColorPalette(colorWheel) {
         }
       })
 
-    colorWheel.container
-      .selectAll(colorWheel.selector('theme-color'))
-      .each(function (d) {
-        let colorEl = this
+    $palette.selectAll('.' + this.classNames.swatch).each(function (d) {
+      let swatchEl = this
+      swatchEl.style.backgroundColor = chroma(d.color).hex()
+    })
 
-        // TODO CHECK
-        colorEl.style.backgroundColor = chroma(d.color).hex()
-      })
+    $palette.selectAll('.' + this.classNames.slider).each(function (d) {
+      let sliderEl = this
+      let val = parseInt(d.color.v * 100)
+      sliderEl.value = val
+      d3.select(sliderEl).attr('value', val)
+    })
 
-    colorWheel.container
-      .selectAll(colorWheel.selector('theme-slider'))
-      .each(function (d) {
-        let sliderEl = this
-        let val = parseInt(d.color.v * 100)
-        sliderEl.value = val
-        d3.select(sliderEl).attr('value', val)
-      })
-
-    colorWheel.container
-      .selectAll(colorWheel.selector('theme-value'))
-      .each(function (d) {
-        let valueEl = this
-
-        // TODO CHECK
-        valueEl.value = chroma(d.color).hex()
-      })
-  })
+    $palette.selectAll('.' + this.classNames.colorText).each(function (d) {
+      let textInputEl = this
+      textInputEl.value = chroma(d.color).hex()
+    })
+  }
 }

@@ -25,7 +25,7 @@ export class ColorWheelMarkerDatum {
 
 // These modes define a relationship between the colors on a
 // color wheel, based on "science".
-export const colorModes = {
+const colorModes = {
   CUSTOM: 'Custom',
   ANALOGOUS: 'Analogous',
   COMPLEMENTARY: 'Complementary',
@@ -36,7 +36,9 @@ export const colorModes = {
 }
 
 export class ColorWheel {
-  static defaultOptions = {
+  static MODES = colorModes
+
+  static DEFAULT_OPTIONS = {
     container: document.body,
     radius: 175,
     margin: 40, // Space around the edge of the wheel
@@ -50,7 +52,7 @@ export class ColorWheel {
 
   constructor(options) {
     this.options = {
-      ...ColorWheel.defaultOptions,
+      ...ColorWheel.DEFAULT_OPTIONS,
       options,
     }
 
@@ -428,6 +430,10 @@ export class ColorWheel {
   // Utility for building internal class name strings
   cx(className) {
     return this.options.baseClassName + '-' + className
+  }
+
+  isInMode(mode) {
+    return this.currentMode === colorModes[mode]
   }
 
   // For creating custom markers

@@ -1,10 +1,3 @@
-// import {
-//   ColorWheel,
-//   colorModes,
-// } from '../node_modules/color-wheelie/dist/colorWheel.js'
-
-// import {createColorDisplay} from '../node_modules/color-wheelie/colorDisplay.js'
-
 import {ColorWheel, colorModes, createColorDisplay} from 'color-wheelie'
 
 let colorWheel = new ColorWheel({

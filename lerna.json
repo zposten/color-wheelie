@@ -1,4 +1,4 @@
 {
-  "packages": ["tinted", "DEMO"],
+  "packages": ["lib", "DEMO"],
   "version": "0.0.0"
 }

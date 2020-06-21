@@ -7,12 +7,13 @@
   "license": "MIT",
   "private": "true",
   "workspaces": [
-    "tinted",
+    "lib",
     "DEMO"
   ],
   "scripts": {
     "start": "cd DEMO && yarn start",
-    "build": "cd tinted && yarn build"
+    "build": "cd lib && yarn build",
+    "watch": "cd lib && yarn build && yarn watch"
   },
   "devDependencies": {
     "lerna": "^3.22.1",

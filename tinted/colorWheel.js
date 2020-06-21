@@ -1,3 +1,6 @@
+import d3 from 'd3'
+import chroma from 'chroma-js'
+
 import {
   artisticToScientificSmooth,
   scientificToArtisticSmooth,
@@ -12,7 +15,9 @@ import {
 
 export class ColorWheelMarkerDatum {
   constructor(color, name, show) {
-    this.color = tinycolor(color).toHsv()
+    let [h, s, v] = chroma(color).hsv()
+    this.color = {h, s, v}
+
     this.name = name
     this.show = show
   }
@@ -20,7 +25,7 @@ export class ColorWheelMarkerDatum {
 
 // These modes define a relationship between the colors on a
 // color wheel, based on "science".
-export const colorModes = {
+const colorModes = {
   CUSTOM: 'Custom',
   ANALOGOUS: 'Analogous',
   COMPLEMENTARY: 'Complementary',
@@ -31,7 +36,9 @@ export const colorModes = {
 }
 
 export class ColorWheel {
-  static defaultOptions = {
+  static MODES = colorModes
+
+  static DEFAULT_OPTIONS = {
     container: document.body,
     radius: 175,
     margin: 40, // Space around the edge of the wheel
@@ -39,21 +46,23 @@ export class ColorWheel {
     defaultSlice: 20,
     initRoot: 'red',
     initMode: colorModes.ANALOGOUS,
-    baseClassName: 'color-wheel',
+    baseClassName: 'tinted',
     colorWheelImage: 'http://benknight.github.io/kuler-d3/wheel.png',
   }
 
   constructor(options) {
     this.options = {
-      ...ColorWheel.defaultOptions,
-      options,
+      ...ColorWheel.DEFAULT_OPTIONS,
+      ...options,
     }
+
+    console.log('this.options', this.options)
 
     this.init()
   }
 
   init() {
-    const { initMode, container, defaultSlice, colorWheelImage } = this.options
+    const {initMode, container, defaultSlice, colorWheelImage} = this.options
 
     if (!Object.values(colorModes).includes(initMode)) {
       throw new Error('Invalid mode specified: ' + mode)
@@ -68,7 +77,7 @@ export class ColorWheel {
   }
 
   createWheelDOM() {
-    const { radius, baseClassName, margin, colorWheelImage } = this.options
+    const {radius, baseClassName, margin, colorWheelImage} = this.options
     let diameter = radius * 2
 
     let wheel = this.container.append('svg').attr({
@@ -100,11 +109,11 @@ export class ColorWheel {
     let markerTrails = wheel.append('g')
     let markers = wheel.append('g')
 
-    this.$ = { wheel, markers, markerTrails }
+    this.$ = {wheel, markers, markerTrails}
   }
 
   bindEvents() {
-    const { radius } = this.options
+    const {radius} = this.options
 
     // Create a dispatch with 4 custom events
     this.dispatch = d3.dispatch(
@@ -115,7 +124,7 @@ export class ColorWheel {
       // "updateEnd" means the state of the ColorWheel has been finished updating.
       'updateEnd',
       // The mode was changed
-      'modeChanged'
+      'modeChanged',
     )
 
     this.dispatch.on('bindData', () => {
@@ -132,7 +141,7 @@ export class ColorWheel {
           },
         })
         .select('circle')
-        .attr({ fill: d => hexFromHS(d.color.h, d.color.s) })
+        .attr({fill: d => hexFromHS(d.color.h, d.color.s)})
 
       this.container.selectAll(this.selector('marker-trail')).attr({
         x2: d => getSVGPositionFromHS(d.color.h, d.color.s, radius).x,
@@ -147,7 +156,7 @@ export class ColorWheel {
   }
 
   bindData(newData) {
-    const { initRoot } = this.options
+    const {initRoot} = this.options
     let data
 
     // Data can be passed as a whole number,
@@ -170,7 +179,7 @@ export class ColorWheel {
   }
 
   createMarkerDOMElements(data) {
-    const { radius, markerWidth } = this.options
+    const {radius, markerWidth} = this.options
 
     let markerTrails = this.$.markerTrails
       .selectAll(this.selector('marker-trail'))
@@ -236,7 +245,7 @@ export class ColorWheel {
       .drag()
       .on('drag', function (d) {
         let markerEl = this
-        let { radius } = self.options
+        let {radius} = self.options
 
         let pos = clampToCircle(d3.event.x, d3.event.y, radius)
         let hs = getHSFromSVGPosition(pos.x, pos.y, radius)
@@ -248,7 +257,7 @@ export class ColorWheel {
         let dragHue = ((Math.atan2(p.y, p.x) * 180) / Math.PI + 720) % 360
 
         let startingHue = parseFloat(
-          d3.select(markerEl).attr('data-startingHue')
+          d3.select(markerEl).attr('data-startingHue'),
         )
 
         let theta1 = (360 + startingHue - dragHue) % 360
@@ -258,7 +267,7 @@ export class ColorWheel {
       })
       .on('dragstart', () => {
         this.getVisibleMarkers().attr('data-startingHue', d =>
-          scientificToArtisticSmooth(d.color.h)
+          scientificToArtisticSmooth(d.color.h),
         )
       })
       .on('dragend', () => {
@@ -267,12 +276,12 @@ export class ColorWheel {
 
         if (this.currentMode === colorModes.ANALOGOUS) {
           let rootTheta = scientificToArtisticSmooth(
-            d3.select(visibleMarkers[0][0]).datum().color.h
+            d3.select(visibleMarkers[0][0]).datum().color.h,
           )
 
           if (visibleMarkers[0].length > 1) {
             let neighborTheta = scientificToArtisticSmooth(
-              d3.select(visibleMarkers[0][1]).datum().color.h
+              d3.select(visibleMarkers[0][1]).datum().color.h,
             )
             this.slice = (360 + neighborTheta - rootTheta) % 360
           }
@@ -392,27 +401,6 @@ export class ColorWheel {
     this.dispatch.markersUpdated()
   }
 
-  getColorsAsHEX() {
-    return this._getColorsAs('toHexString')
-  }
-  getColorsAsRGB() {
-    return this._getColorsAs('toRgbString')
-  }
-  getColorsAsHSL() {
-    return this._getColorsAs('toHslString')
-  }
-  getColorsAsHSV() {
-    return this._getColorsAs('toHsvString')
-  }
-  _getColorsAs(toFunk) {
-    return this.getVisibleMarkers()
-      .data()
-      .sort((a, b) => a.color.h - b.color.h)
-      .map(d =>
-        tinycolor({ h: d.color.h, s: d.color.s, v: d.color.v })[toFunk]()
-      )
-  }
-
   setMode(mode) {
     ColorWheel.checkIfModeExists(mode)
     this.currentMode = mode
@@ -427,13 +415,13 @@ export class ColorWheel {
 
   getVisibleMarkers() {
     return this.container.selectAll(
-      this.selector('marker') + '[visibility=visible]'
+      this.selector('marker') + '[visibility=visible]',
     )
   }
 
   getRootMarker() {
     return this.container.select(
-      this.selector('marker') + '[visibility=visible]'
+      this.selector('marker') + '[visibility=visible]',
     )
   }
 
@@ -444,6 +432,10 @@ export class ColorWheel {
   // Utility for building internal class name strings
   cx(className) {
     return this.options.baseClassName + '-' + className
+  }
+
+  isInMode(mode) {
+    return this.currentMode === colorModes[mode]
   }
 
   // For creating custom markers

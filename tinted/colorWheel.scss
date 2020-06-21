@@ -1,0 +1,23 @@
+.tinted {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 400px;
+  height: 400px;
+  margin: 60px auto 0;
+}
+
+.tinted-marker {
+  &:first-child circle {
+    stroke-opacity: 1;
+    stroke-width: 5px;
+  }
+
+  text {
+    text-shadow: 1px 1px 1px black, 0 0 3px rgba(0, 0, 0, 0.25);
+
+    [data-mode='Shades'] & {
+      display: none;
+    }
+  }
+}

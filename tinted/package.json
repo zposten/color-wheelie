@@ -1,0 +1,39 @@
+{
+  "name": "tinted",
+  "version": "0.0.1",
+  "description": "An interactive color wheel for the browser",
+  "main": "dist/index.js",
+  "repository": "https://github.com/zposten/tinted.git",
+  "author": "Zach Posten <zach@posten.io>, Benjamin Knight <ben@benknight.me>",
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "d3",
+    "color",
+    "color wheel",
+    "color-wheel",
+    "kuler"
+  ],
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "sass": "sass .:dist",
+    "clean": "rm -rf dist && mkdir dist",
+    "build": "rollup --config",
+    "prod": "yarn clean && yarn build && yarn sass"
+  },
+  "dependencies": {
+    "chroma-js": "^2.1.0",
+    "d3": "~3.5.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "rollup": "^2.17.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "sass": "^1.26.8"
+  },
+  "browserslist": "> 0.25%, not dead"
+}

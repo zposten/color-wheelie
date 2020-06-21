@@ -1,6 +1,6 @@
 # Tinted
 
-> Reconstruction of the color wheel UI found on http://color.adobe.com (formerly known as Kuler) using [D3.js](https://github.com/mbostock/d3).
+Tinted is a reconstruction of [Adobe's color wheel](http://color.adobe.com), built for the browser using [D3.js](https://github.com/mbostock/d3).
 
 ## Demo
 
@@ -13,26 +13,46 @@ http://benknight.github.io/kuler-d3/
 yarn add tinted
 
 # Or install with NPM
-npm install tinted
+npm i tinted
 ```
 
 ## Usage
 
 ```html
-<div class="color-wheel"></div>
+<div id="tinted"></div>
 ```
 
-By specifying a number of colors:
+```scss
+@use 'tinted/colorWheel';
+@use 'tinted/colorPalette';
 
-```js
-let colorWheel = new ColorWheel({container: '.color-wheel'})
-colorWheel.bindData(5)
+#tinted {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  width: 400px;
+}
 ```
 
-or, with preexisting color values:
+> To make these `@use` statements work, you will need to add `node_modules` to SASS' `--load-path` or sass-loader's `includePaths`.
+
+> If you're not using SASS in your project, we do provide compiled CSS files in the `dist` folder.
 
 ```js
-// Use any valid chroma-js input
+import {ColorWheel, ColorPalette} from 'tinted'
+
+let wheel = new ColorWheel({container: '#tinted'})
+let palette = new ColorPalette(wheel)
+
+wheel.bindData()
+```
+
+## Custom Colors
+
+You can initialize Tinted with a custom color set:
+
+```js
 let colors = [
   'red',
   '#0ff',
@@ -42,6 +62,6 @@ let colors = [
   'hsl(0, 100%, 50%)',
 ]
 
-let colorWheel = new ColorWheel({container: '.color-wheel'})
-colorWheel.bindData(colors)
+let wheel = new ColorWheel({container: '#tinted'})
+wheel.bindData(colors)
 ```

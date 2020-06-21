@@ -11,10 +11,11 @@ body {
 }
 
 #tinted {
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
+  width: 400px;
 }
 
 .color-mode-toggle {

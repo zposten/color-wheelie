@@ -46,7 +46,7 @@ export class ColorWheel {
     defaultSlice: 20,
     initRoot: 'red',
     initMode: colorModes.ANALOGOUS,
-    baseClassName: 'color-wheel',
+    baseClassName: 'tinted',
     colorWheelImage: 'http://benknight.github.io/kuler-d3/wheel.png',
   }
 

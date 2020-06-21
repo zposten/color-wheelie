@@ -1,4 +1,4 @@
-.color-wheel {
+.tinted {
   position: relative;
   z-index: 1;
   display: block;
@@ -7,7 +7,7 @@
   margin: 60px auto 0;
 }
 
-.color-wheel-marker {
+.tinted-marker {
   &:first-child circle {
     stroke-opacity: 1;
     stroke-width: 5px;

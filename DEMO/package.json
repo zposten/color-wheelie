@@ -1,5 +1,5 @@
 {
-  "name": "color-wheelie-demo",
+  "name": "tinted-demo",
   "version": "0.0.1",
   "main": "main.js",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "postbuild": "yarn sass"
   },
   "dependencies": {
-    "color-wheelie": "^0.0.1"
+    "tinted": "^0.0.1"
   },
   "devDependencies": {
     "css-loader": "^3.6.0",

@@ -1,4 +1,4 @@
-import {ColorWheel, ColorPalette} from 'color-wheelie'
+import {ColorWheel, ColorPalette} from 'tinted'
 
 let colorWheel = new ColorWheel({
   colorWheelImage: './wheel.png',

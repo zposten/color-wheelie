@@ -1,9 +1,9 @@
 {
-  "name": "color-wheelie",
+  "name": "tinted",
   "version": "0.0.1",
   "description": "An interactive color wheel for the browser",
   "main": "dist/index.js",
-  "repository": "https://github.com/zposten/color-wheelie.git",
+  "repository": "https://github.com/zposten/tinted.git",
   "author": "Zach Posten <zach@posten.io>, Benjamin Knight <ben@benknight.me>",
   "license": "MIT",
   "private": false,

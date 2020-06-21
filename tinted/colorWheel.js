@@ -53,8 +53,10 @@ export class ColorWheel {
   constructor(options) {
     this.options = {
       ...ColorWheel.DEFAULT_OPTIONS,
-      options,
+      ...options,
     }
+
+    console.log('this.options', this.options)
 
     this.init()
   }

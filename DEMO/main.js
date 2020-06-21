@@ -2,6 +2,7 @@ import {ColorWheel, ColorPalette} from 'tinted'
 
 let colorWheel = new ColorWheel({
   colorWheelImage: './wheel.png',
+  container: '#tinted',
 })
 
 new ColorPalette(colorWheel)
@@ -11,7 +12,7 @@ colorWheel.bindData(5)
 function createModeToggle(colorWheel) {
   let modeToggle = colorWheel.container
     .append('select')
-    .attr('class', colorWheel.cx('mode-toggle'))
+    .attr('class', 'color-mode-toggle')
     .on('change', function () {
       colorWheel.currentMode = this.value
       colorWheel.setHarmony()

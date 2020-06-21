@@ -10,7 +10,11 @@ body {
   margin: 0 auto;
 }
 
-.color-wheel-mode-toggle {
+#tinted {
+  height: 100%;
+}
+
+.color-mode-toggle {
   position: absolute;
   z-index: 2;
   top: 20px;

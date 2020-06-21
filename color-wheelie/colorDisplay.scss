@@ -29,6 +29,16 @@
   box-shadow: 2px 2px 0 black;
 }
 
+.color-wheel-theme-value {
+  outline: none;
+  width: 100%;
+  border: none;
+  font-family: Monaco, monospace;
+  text-align: center;
+  background: transparent;
+  color: white;
+}
+
 .color-wheel-theme-slider {
   position: relative;
   display: block;
@@ -50,78 +60,52 @@
     color: white;
     text-shadow: 1px 0 1px rgba(0, 0, 0, 0.5);
   }
+
+  // For reasons I don't understand, these cannot be comma separated
+  // and must be declared separately
+  @mixin slider-track() {
+    height: 2px;
+    border: none;
+    margin: 1em 0;
+    background: #fff;
+    color: #fff;
+  }
+  &::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    @include slider-track;
+  }
+  &::-moz-range-track {
+    @include slider-track;
+  }
+  &::-ms-track {
+    @include slider-track;
+  }
+
+  @mixin slider-thumb() {
+    background: black;
+    border: 2px solid #fff;
+    height: 15px;
+    width: 15px;
+    border-radius: 99px;
+    cursor: ew-resize;
+  }
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    margin-top: -7px;
+    @include slider-thumb;
+  }
+  &::-moz-range-thumb {
+    @include slider-thumb;
+  }
+  &::-ms-thumb {
+    @include slider-thumb;
+  }
+
+  &::-ms-fill-lower,
+  &::-ms-fill-upper,
+  &::-ms-ticks-before,
+  &::-ms-ticks-after,
+  &::-ms-tooltip {
+    display: none;
+  }
 }
-
-.color-wheel-theme-value {
-  outline: none;
-  width: 100%;
-  border: none;
-  font-family: Monaco, monospace;
-  text-align: center;
-  background: transparent;
-  color: white;
-}
-
-// /** Trumps */
-
-// ::-webkit-slider-runnable-track {
-//   -webkit-appearance: none;
-//   height: 2px;
-//   border: none;
-//   margin: 1em 0;
-//   background: #fff;
-//   color: #fff;
-// }
-
-// ::-moz-range-track {
-//   height: 2px;
-//   border: none;
-//   margin: 1em 0;
-//   background: #fff;
-//   color: #fff;
-// }
-
-// ::-ms-track {
-//   height: 2px;
-//   border: none;
-//   margin: 1em 0;
-//   background: #fff;
-//   color: #fff;
-// }
-
-// ::-ms-fill-lower,
-// ::-ms-fill-upper,
-// ::-ms-ticks-before,
-// ::-ms-ticks-after,
-// ::-ms-tooltip {
-//   display: none;
-// }
-
-// ::-webkit-slider-thumb {
-//   -webkit-appearance: none;
-//   margin-top: -7px;
-//   background: black;
-//   border: 2px solid #fff;
-//   height: 15px;
-//   width: 15px;
-//   border-radius: 99px;
-//   cursor: ew-resize;
-// }
-
-// ::-moz-range-thumb {
-//   background: black;
-//   border: 2px solid #fff;
-//   height: 15px;
-//   width: 15px;
-//   border-radius: 99px;
-//   cursor: ew-resize;
-// }
-
-// ::-ms-thumb {
-//   background: black;
-//   border: 2px solid #fff;
-//   height: 15px;
-//   width: 15px;
-//   border-radius: 99px;
-//   cursor: ew-resize;
-// }

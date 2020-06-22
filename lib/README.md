@@ -23,8 +23,8 @@ npm i tinted
 ```
 
 ```scss
-@use 'tinted/colorWheel';
-@use 'tinted/colorPalette';
+@use 'tinted/wheel';
+@use 'tinted/palette';
 
 #tinted {
   display: flex;
@@ -35,15 +35,15 @@ npm i tinted
 }
 ```
 
-> To make these `@use` statements work, you will need to add `node_modules` to SASS' `--load-path` or sass-loader's `includePaths`.
+> To make these abbreviated `@use` statements work, you will need to add `node_modules` to SASS' `--load-path` or sass-loader's `includePaths`. Alternatively, you could just path into `node_modules` explicitly.
 
 > If you're not using SASS in your project, we do provide compiled CSS files in the `dist` folder.
 
 ```js
-import {ColorWheel, ColorPalette} from 'tinted'
+import {TintedWheel, TintedPalette} from 'tinted'
 
-let wheel = new ColorWheel({container: '#tinted'})
-let palette = new ColorPalette(wheel)
+let wheel = new TintedWheel({container: '#tinted'})
+let palette = new TintedPalette(wheel)
 
 wheel.bindData()
 ```
@@ -62,6 +62,6 @@ let colors = [
   'hsl(0, 100%, 50%)',
 ]
 
-let wheel = new ColorWheel({container: '#tinted'})
+let wheel = new TintedWheel({container: '#tinted'})
 wheel.bindData(colors)
 ```

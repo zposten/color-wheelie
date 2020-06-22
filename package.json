@@ -12,6 +12,7 @@
   "scripts": {
     "start": "cd DEMO && yarn start",
     "build": "cd lib && yarn build",
+    "prod": "cd lib && yarn prod",
     "watch": "cd lib && yarn build && yarn watch",
     "deploy": "git push origin :gh-pages && git subtree push --prefix DEMO origin gh-pages"
   },

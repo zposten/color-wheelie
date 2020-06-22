@@ -1,11 +1,11 @@
-import {ColorWheel, ColorPalette} from 'tinted'
+import {TintedWheel, TintedPalette} from 'tinted'
 
-let colorWheel = new ColorWheel({
+let colorWheel = new TintedWheel({
   colorWheelImage: './wheel.png',
   container: '#tinted',
 })
 
-new ColorPalette(colorWheel)
+new TintedPalette(colorWheel)
 createModeToggle(colorWheel)
 
 colorWheel.bindData()
@@ -19,10 +19,10 @@ function createModeToggle(colorWheel) {
       colorWheel.setHarmony()
     })
 
-  for (let mode in ColorWheel.MODES) {
+  for (let mode in TintedWheel.MODES) {
     modeToggle
       .append('option')
-      .text(ColorWheel.MODES[mode])
+      .text(TintedWheel.MODES[mode])
       .attr('selected', () => (colorWheel.isInMode(mode) ? 'selected' : null))
   }
 }

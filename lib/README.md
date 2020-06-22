@@ -4,7 +4,7 @@ Tinted is a reconstruction of [Adobe's color wheel](http://color.adobe.com), bui
 
 ## Demo
 
-http://benknight.github.io/kuler-d3/
+https://zposten.github.io/tinted/
 
 ## Install
 

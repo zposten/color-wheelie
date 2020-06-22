@@ -4,7 +4,7 @@ module.exports = {
   mode: 'development',
   entry: ['./main.js', './index.scss'],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: __dirname,
     filename: 'bundle.js',
   },
   module: {

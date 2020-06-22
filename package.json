@@ -11,11 +11,11 @@
   ],
   "scripts": {
     "start": "cd DEMO && yarn start",
+    "build-demo": "cd DEMO && yarn build",
     "build": "cd lib && yarn build",
     "prod": "cd lib && yarn prod",
     "watch": "cd lib && yarn build && yarn watch",
-    "predeploy": "git push origin :gh-pages",
-    "deploy": "cd lib && yarn prod && cd ../DEMO && cd .. && yarn build && git subtree push --prefix DEMO origin gh-pages"
+    "deploy": "yarn prod && yarn build-demo && git push origin -f master:gh-pages"
   },
   "devDependencies": {
     "lerna": "^3.22.1",

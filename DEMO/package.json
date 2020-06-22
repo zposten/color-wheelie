@@ -1,9 +1,10 @@
 {
   "name": "tinted-demo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "main.js",
   "license": "MIT",
   "author": "Zach Posten <zach@posten.io>",
+  "private": "true",
   "scripts": {
     "start": "webpack-dev-server",
     "sass": "sass --load-path='../node_modules' index.scss:index.css",
@@ -13,7 +14,7 @@
     "postbuild": "yarn sass"
   },
   "dependencies": {
-    "tinted": "^0.0.1"
+    "tinted": "^0.0.2"
   },
   "devDependencies": {
     "css-loader": "^3.6.0",

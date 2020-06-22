@@ -1,0 +1,28 @@
+{
+  "name": "tinted-demo",
+  "version": "0.0.3",
+  "main": "main.js",
+  "license": "MIT",
+  "author": "Zach Posten <zach@posten.io>",
+  "private": "true",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "sass": "sass --load-path='../node_modules' index.scss:index.css",
+    "clean": "rm -f bundle.js index.css index.css.map",
+    "prebuild": "yarn clean",
+    "build": "webpack",
+    "postbuild": "yarn sass"
+  },
+  "dependencies": {
+    "tinted": "^0.0.3"
+  },
+  "devDependencies": {
+    "css-loader": "^3.6.0",
+    "sass": "^1.26.8",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

@@ -7,11 +7,11 @@
   "private": "true",
   "workspaces": [
     "lib",
-    "DEMO"
+    "demo"
   ],
   "scripts": {
-    "start": "cd DEMO && yarn start",
-    "build-demo": "cd DEMO && yarn build",
+    "start": "cd demo && yarn start",
+    "build-demo": "cd demo && yarn build",
     "build": "cd lib && yarn build",
     "prod": "cd lib && yarn prod",
     "watch": "cd lib && yarn build && yarn watch",

@@ -4,7 +4,7 @@ Tinted is a reconstruction of [Adobe's color wheel](http://color.adobe.com), bui
 
 ## Demo
 
-https://zposten.github.io/tinted
+https://zposten.github.io/tinted/demo
 
 ## Install
 

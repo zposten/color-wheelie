@@ -6,8 +6,8 @@
   "author": "Zach Posten <zach@posten.io>",
   "scripts": {
     "start": "webpack-dev-server",
-    "sass": "sass --load-path='../node_modules' index.scss:dist/index.css",
-    "clean": "rm -rf dist",
+    "sass": "sass --load-path='../node_modules' index.scss:index.css",
+    "clean": "rm -f bundle.js index.css index.css.map",
     "prebuild": "yarn clean",
     "build": "webpack",
     "postbuild": "yarn sass"

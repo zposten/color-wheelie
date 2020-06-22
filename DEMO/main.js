@@ -7,7 +7,8 @@ let colorWheel = new ColorWheel({
 
 new ColorPalette(colorWheel)
 createModeToggle(colorWheel)
-colorWheel.bindData(5)
+
+colorWheel.bindData()
 
 function createModeToggle(colorWheel) {
   let modeToggle = colorWheel.container

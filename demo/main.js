@@ -5,7 +5,7 @@ let colorWheel = new TintedWheel({
   container: '.tinted',
 })
 
-new TintedPalette(colorWheel)
+new TintedPalette(colorWheel, '.tinted-palette')
 createModeToggle(colorWheel)
 
 colorWheel.bindData()

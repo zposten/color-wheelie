@@ -2,7 +2,7 @@ import {TintedWheel, TintedPalette} from 'tinted'
 
 let colorWheel = new TintedWheel({
   colorWheelImage: './wheel.png',
-  container: '#tinted',
+  container: '.tinted',
 })
 
 new TintedPalette(colorWheel)

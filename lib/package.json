@@ -15,7 +15,8 @@
     "kuler"
   ],
   "files": [
-    "dist/*"
+    "dist/*",
+    "*.scss"
   ],
   "scripts": {
     "sass": "sass .:dist",
@@ -31,9 +32,12 @@
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-transform-runtime": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
+    "@rollup/plugin-babel": "^5.0.4",
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^8.1.0",
     "rollup": "^2.17.1",
-    "rollup-plugin-babel": "^4.4.0",
     "sass": "^1.26.8"
   },
   "browserslist": "> 0.25%, not dead"

@@ -1,6 +1,6 @@
 {
   "name": "tinted-demo",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "main.js",
   "license": "MIT",
   "author": "Zach Posten <zach@posten.io>",
@@ -16,7 +16,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "tinted": "^0.0.3"
+    "tinted": "^0.0.4"
   },
   "devDependencies": {
     "css-loader": "^3.6.0",

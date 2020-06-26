@@ -23,7 +23,7 @@ function createModeToggle(colorWheel) {
   let modeToggle = d3
     .select('body')
     .append('select')
-    .attr('class', 'color-mode-toggle')
+    .attr('class', 'my-color-mode-toggle')
     .on('change', function () {
       colorWheel.currentMode = this.value
       colorWheel.setHarmony()

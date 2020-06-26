@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "repository": "https://github.com/zposten/tinted.git",
   "author": "Zach Posten <zach@posten.io>, Benjamin Knight <ben@benknight.me>",
+  "homepage": "https://zposten.github.io/tinted",
   "license": "MIT",
   "private": false,
   "keywords": [

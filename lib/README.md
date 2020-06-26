@@ -18,7 +18,7 @@ npm i tinted
 
 ## Usage
 
-The wheel and palette can be used separately, but it is recommended to use them together.
+The required, the wheel can be used without the palette, but it is recommended to use them together.
 
 ```html
 <div class="my-color-wheel">
@@ -49,17 +49,17 @@ import {TintedWheel, TintedPalette} from 'tinted'
 
 let colorWheel = new TintedWheel({
   container: document.querySelector('.tinted-wheel'),
+  colorWheelImage: './wheel.png',
 })
 
 let palette = new TintedPalette({
   container: document.querySelector('.tinted-palette'),
+  colorWheel: colorWheel,
 })
 
-colorWheel.dispatch.on('bindData.main', data =>
-  palette.updateDOM(data, colorWheel),
-)
+colorWheel.dispatch.on('bindData.main', data => palette.render(data))
 colorWheel.dispatch.on('markersUpdated.main', () => {
-  palette.updateColors(colorWheel.currentMode)
+  palette.onColorValuesChanged()
 })
 
 colorWheel.bindData()
@@ -124,15 +124,16 @@ A palette of colors to display the user's chosen values from the `TintedWheel`. 
 | Name            | Description                                                                                                              |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `container`     | A DOM node or CSS selector for the element that the palette should be created inside of                                  |
+| `colorWheel`    | The `TintedColorWheel` object to base the palette off of                                                                 |
 | `baseClassName` | The prefix for the class names for all generated elements. Overriding this will cause all provided CSS to no longer work |
 
 #### Methods
 
-| Name                          | Description                                                                                            |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `constructor(options)`        | Constructor                                                                                            |
-| `updateDOM(data, colorWheel)` | Create or update the number of colors in the palette based on data from the wheel                      |
-| `updateColors(currentMode)`   | Update the color values for the existing number of colors, passing in the current mode the wheel is in |
+| Name                     | Description                                                                                            |
+| ------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `constructor(options)`   | Constructor                                                                                            |
+| `render(data)`           | Create or update the number of colors in the palette based on data from the wheel                      |
+| `onColorValuesChanged()` | Update the color values for the existing number of colors, passing in the current mode the wheel is in |
 
 ## Styling
 

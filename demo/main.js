@@ -7,13 +7,12 @@ let colorWheel = new TintedWheel({
 
 let palette = new TintedPalette({
   container: document.querySelector('.tinted-palette'),
+  colorWheel,
 })
 
-colorWheel.dispatch.on('bindData.main', data =>
-  palette.updateDOM(data, colorWheel),
-)
+colorWheel.dispatch.on('bindData.main', data => palette.render(data))
 colorWheel.dispatch.on('markersUpdated.main', () => {
-  palette.updateColors(colorWheel.currentMode)
+  palette.onColorValuesChanged()
 })
 
 colorWheel.bindData()

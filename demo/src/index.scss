@@ -10,27 +10,25 @@ body {
   margin: 0 auto;
 }
 
-#tinted {
+.my-color-wheel {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: auto;
   max-width: 400px;
   margin-top: 70px;
+
+  &.tinted--dark {
+    background: black;
+  }
 }
 
-.color-mode-toggle {
+.my-color-mode-toggle {
   position: absolute;
   z-index: 2;
   top: 20px;
   right: 20px;
   height: 2em;
-  border: none;
-  background: #000;
-  color: rgba(255, 255, 255, 0.75);
   font-size: 20px;
-
-  &:hover {
-    color: rgba(255, 255, 255, 0.9);
-  }
+  opacity: 0.9;
 }

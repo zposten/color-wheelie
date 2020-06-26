@@ -1,26 +1,70 @@
+///////////////////////
+// THEMING
+///////////////////////
+
+.tinted-palette__color__color-text,
+.tinted-palette__color__slider {
+  .tinted--dark & {
+    opacity: 0.8;
+  }
+}
+
+.tinted-palette__color__color-text {
+  color: black;
+  background: transparent;
+
+  .tinted--dark & {
+    color: white;
+  }
+}
+
+.tinted-palette__color__slider::before {
+  color: black;
+
+  .tinted--dark & {
+    color: white;
+  }
+}
+
+@mixin _slider-track-color() {
+  background: black;
+  color: black;
+
+  .tinted--dark & {
+    background: white;
+    color: white;
+  }
+}
+
+@mixin _slider-thumb-color() {
+  background: white;
+  border: 2px solid black;
+
+  .tinted--dark & {
+    background: black;
+    border-color: white;
+  }
+}
+
+///////////////////////
+// LAYOUT
+///////////////////////
+
 .tinted-palette {
   display: flex;
+  margin-top: 10px;
 }
 
 .tinted-palette__color {
   flex: 1;
   padding: 0 5px;
   border-radius: 50%;
-
-  input {
-    opacity: 0.3;
-  }
-
-  &:hover input {
-    opacity: 0.75;
-  }
 }
 
 .tinted-palette__color__swatch {
   position: relative;
   border-radius: 50%;
   padding-top: 100%;
-  box-shadow: 2px 2px 0 black;
 }
 
 .tinted-palette__color__color-text {
@@ -29,8 +73,6 @@
   border: none;
   font-family: Monaco, monospace;
   text-align: center;
-  background: transparent;
-  color: white;
 }
 
 .tinted-palette__color__slider {
@@ -46,53 +88,48 @@
     content: attr(value) '%';
     display: block;
     position: absolute;
-    z-index: -1;
-    top: 30px;
+    top: 25px;
     width: 100%;
     font-size: 10px;
     text-align: center;
-    color: white;
-    text-shadow: 1px 0 1px rgba(0, 0, 0, 0.5);
   }
 
   // For reasons I don't understand, these cannot be comma separated
   // and must be declared separately
-  @mixin slider-track() {
+  @mixin _slider-track() {
     height: 2px;
     border: none;
     margin: 1em 0;
-    background: #fff;
-    color: #fff;
+    @include _slider-track-color;
   }
   &::-webkit-slider-runnable-track {
     -webkit-appearance: none;
-    @include slider-track;
+    @include _slider-track;
   }
   &::-moz-range-track {
-    @include slider-track;
+    @include _slider-track;
   }
   &::-ms-track {
-    @include slider-track;
+    @include _slider-track;
   }
 
-  @mixin slider-thumb() {
-    background: black;
-    border: 2px solid #fff;
+  @mixin _slider-thumb() {
     height: 15px;
     width: 15px;
     border-radius: 99px;
     cursor: ew-resize;
+    @include _slider-thumb-color;
   }
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     margin-top: -7px;
-    @include slider-thumb;
+    @include _slider-thumb;
   }
   &::-moz-range-thumb {
-    @include slider-thumb;
+    @include _slider-thumb;
   }
   &::-ms-thumb {
-    @include slider-thumb;
+    @include _slider-thumb;
   }
 
   &::-ms-fill-lower,

@@ -7,17 +7,20 @@
   "private": "true",
   "scripts": {
     "start": "webpack-dev-server",
-    "sass": "sass --load-path='../node_modules' index.scss:index.css",
+    "sass": "sass --load-path='../node_modules' src/index.scss:dist/index.css",
     "clean": "rm -f bundle.js index.css index.css.map",
     "prebuild": "yarn clean",
     "build": "webpack",
-    "postbuild": "yarn sass"
+    "postbuild": "yarn sass && cp wheel.png dist/wheel.png",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "tinted": "^0.0.3"
   },
   "devDependencies": {
     "css-loader": "^3.6.0",
+    "html-webpack-plugin": "^4.3.0",
     "sass": "^1.26.8",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",

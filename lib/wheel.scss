@@ -1,22 +1,21 @@
-.tinted {
-  position: relative;
+///////////////////////
+// LAYOUT
+///////////////////////
 
-  .tinted-circle {
-    position: relative;
-  }
+.tinted-marker:first-child circle {
+  stroke-opacity: 1;
+  stroke-width: 2px;
 }
 
-.tinted-marker {
-  &:first-child circle {
-    stroke-opacity: 1;
-    stroke-width: 2px;
-  }
+///////////////////////
+// THEMING
+///////////////////////
 
-  text {
-    text-shadow: 1px 1px 1px black, 0 0 3px rgba(0, 0, 0, 0.25);
+.tinted-marker,
+.tinted-marker-trail {
+  stroke: black;
 
-    [data-mode='Shades'] & {
-      display: none;
-    }
+  .tinted--dark & {
+    stroke: white;
   }
 }

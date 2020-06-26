@@ -1,10 +1,8 @@
 # Tinted
 
-Tinted is a reconstruction of [Adobe's color wheel](http://color.adobe.com), built for the browser using [D3.js](https://github.com/mbostock/d3).
+Tinted is a color harmony wheel. It helps you choose color combinations that create pleasing contrasts and feel harmonious.
 
-## Demo
-
-https://zposten.github.io/tinted/demo
+[Demo](https://zposten.github.io/tinted/demo)
 
 ## Install
 
@@ -17,8 +15,6 @@ npm i tinted
 ```
 
 ## Usage
-
-The required, the wheel can be used without the palette, but it is recommended to use them together.
 
 ```html
 <div class="my-color-wheel">
@@ -36,13 +32,9 @@ The required, the wheel can be used without the palette, but it is recommended t
   flex-direction: column;
   align-items: center;
   margin: auto;
-  width: 400px;
+  max-width: 400px;
 }
 ```
-
-> To make these abbreviated `@use` statements work, you will need to add `node_modules` to SASS' `--load-path` or sass-loader's `includePaths`. Alternatively, you could just path into `node_modules` explicitly.
-
-> If you're not using SASS in your project, we do provide compiled CSS files in the `dist` folder.
 
 ```js
 import {TintedWheel, TintedPalette} from 'tinted'
@@ -64,6 +56,12 @@ colorWheel.dispatch.on('markersUpdated.main', () => {
 
 colorWheel.bindData()
 ```
+
+A few things to note:
+
+- The wheel can be used without the palette, but it is recommended to use them together.
+- To make these abbreviated `@use` statements work, you will need to add `node_modules` to SASS' `--load-path` or sass-loader's `includePaths`. Alternatively, you could just path into `node_modules` explicitly.
+- If you're not using SASS in your project, we do provide compiled CSS files in the `dist` folder.
 
 ## Custom Colors
 
@@ -87,7 +85,7 @@ wheel.bindData(colors)
 
 ### TintedWheel
 
-The color harmony wheel for the user to make a selection of colors
+The color harmony wheel for the user to make a selection of colors.
 
 #### Options
 

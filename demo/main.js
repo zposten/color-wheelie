@@ -1,17 +1,28 @@
-import {TintedWheel, TintedPalette} from 'tinted'
+import {TintedWheel, TintedPalette, colorModes} from 'tinted'
 
 let colorWheel = new TintedWheel({
+  container: document.querySelector('.tinted-wheel'),
   colorWheelImage: './wheel.png',
-  container: '.tinted-wheel',
 })
 
-new TintedPalette(colorWheel, '.tinted-palette')
-createModeToggle(colorWheel)
+let palette = new TintedPalette({
+  container: document.querySelector('.tinted-palette'),
+})
+
+colorWheel.dispatch.on('bindData.main', data =>
+  palette.updateDOM(data, colorWheel),
+)
+colorWheel.dispatch.on('markersUpdated.main', () => {
+  palette.updateColors(colorWheel.currentMode)
+})
 
 colorWheel.bindData()
 
+createModeToggle(colorWheel)
+
 function createModeToggle(colorWheel) {
-  let modeToggle = colorWheel.container
+  let modeToggle = d3
+    .select('body')
     .append('select')
     .attr('class', 'color-mode-toggle')
     .on('change', function () {
@@ -19,10 +30,10 @@ function createModeToggle(colorWheel) {
       colorWheel.setHarmony()
     })
 
-  for (let mode in TintedWheel.MODES) {
+  for (let mode in colorModes) {
     modeToggle
       .append('option')
-      .text(TintedWheel.MODES[mode])
+      .text(colorModes[mode])
       .attr('selected', () => (colorWheel.isInMode(mode) ? 'selected' : null))
   }
 }

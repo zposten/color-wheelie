@@ -75,6 +75,14 @@
   text-align: center;
 }
 
+// This is an optional element intended to provide an easy way to add
+// something (e.g. a button) beneath each color
+.tinted-palette-for-each-color {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
 .tinted-palette__color__slider {
   position: relative;
   display: block;

@@ -1,4 +1,5 @@
 import {TintedWheel, TintedPalette, colorModes} from 'tinted'
+import * as d3 from 'd3'
 
 let colorWheel = new TintedWheel({
   container: document.querySelector('.tinted-wheel'),
@@ -10,8 +11,8 @@ let palette = new TintedPalette({
   colorWheel,
 })
 
-colorWheel.dispatch.on('bindData.main', data => palette.render(data))
-colorWheel.dispatch.on('markersUpdated.main', () => {
+colorWheel.dispatch.on('bind-data.main', data => palette.render(data))
+colorWheel.dispatch.on('markers-updated.main', () => {
   palette.onColorValuesChanged()
 })
 

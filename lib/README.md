@@ -49,8 +49,8 @@ let palette = new TintedPalette({
   colorWheel: colorWheel,
 })
 
-colorWheel.dispatch.on('bindData.main', data => palette.render(data))
-colorWheel.dispatch.on('markersUpdated.main', () => {
+colorWheel.dispatch.on('bind-data.main', data => palette.render(data))
+colorWheel.dispatch.on('markers-updated.main', () => {
   palette.onColorValuesChanged()
 })
 

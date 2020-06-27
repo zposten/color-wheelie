@@ -1,6 +1,6 @@
 {
   "name": "tinted",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "An interactive color wheel for the browser",
   "main": "dist/index.js",
   "repository": "https://github.com/zposten/tinted.git",
